@@ -1,7 +1,9 @@
-deb http://172.17.42.1:3142/debian/ jessie main contrib non-free
+deb http://httpredir.debian.org/debian jessie main
+deb http://httpredir.debian.org/debian experimental main
+deb-src http://httpredir.debian.org/debian jessie main
 
-deb http://172.17.42.1:3142/debian/ experimental main contrib non-free
+deb http://httpredir.debian.org/debian jessie-updates main
+deb-src http://httpredir.debian.org/debian jessie-updates main
 
-deb http://security.debian.org/ jessie/updates main contrib non-free
-
-deb http://172.17.42.1:3142/debian/ jessie-updates main
+deb http://security.debian.org/ jessie/updates main
+deb-src http://security.debian.org/ jessie/updates main

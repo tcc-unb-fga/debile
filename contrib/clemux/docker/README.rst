@@ -47,14 +47,9 @@ for the master.  You can use this script:
 
  contrib/clemux/docker/debile-data $ ./debile-generate-master-pgp-keys
 
-(Note: on a VM or headless server, this might take a while because of
-a lack of entropy on the system. You might want to generate the keys
-on a desktop machine, or use `haveged`_
-
-.. _haveged: http://www.issihosts.com/haveged/
-
 You will need to edit reprepo-conf/distributions: change 'SignWith' to
-the id of the pgp key you generated.
+the id of the pgp key you generated. To know the pgp key, import the generated \
+private key to the gpg database.
 
 Then you can build the image:
 

@@ -2,7 +2,7 @@
 Users:  # Users of Debile
     - name: Clement Schreiner
       email: clement@mux.me
-      pgp: DD689A73A7CAFAED446D9C9C650A92899BB9E0AA
+      pgp: E58AFF0ACA7A7E7B410DB8EDF279F1D6C2C66F72
       ssl: 00000000000000000EADBEEF0000000000000000
 
 Builders:  # Machines that can build

@@ -7,6 +7,6 @@ Architectures: i386 amd64 armhf source
 Components: main
 UDebComponents: main
 Description: Debile
-SignWith: 0x2BF6C8EE
+SignWith: 9CA4AEB6C8658C99D3A3BD25608F5D1AAB5AF96A
 Contents: . .gz .bz2
 Log: archive.log
