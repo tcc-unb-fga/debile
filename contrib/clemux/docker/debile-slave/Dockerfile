@@ -15,7 +15,9 @@ COPY *.deb /tmp/
 
 WORKDIR /tmp
 
-RUN apt-get update && apt-get install -y python python-dput dput-ng python-firehose adduser python-debian python-requests python-yaml python-schroot
+RUN apt-get update && apt-get install -y python python-dput dput-ng python-firehose adduser python-debian python-requests python-yaml python-schroot vim
+
+RUN apt install -y apt-utils dctrl-tools devscripts
 
 # Use a custom version of sbuild written by Léo Cavaillé that adds an
 # option --use-schroot-session, which enables starting sbuild with an
@@ -41,6 +43,6 @@ USER debile
 
 COPY slave-keys.tar.gz /tmp/
 
-RUN sh -c "tar xvf slave-keys.tar.gz -O | gpg --import --status-fd 1"
+# RUN sh -c "tar xvf slave-keys.tar.gz -O | gpg --import --status-fd 1 2&> /dev/null"
 
 CMD debile-slave --debug --auth simple

@@ -6,7 +6,7 @@ xmlrpc:
     certfile: /etc/debile/leliel.crt
     # ca_certs: /etc/ssl/certs/ca-certificates.crt
 
-gpg: 0000000000000000DEADBEEF00000000000000000
+gpg: D618869B30C9B582A7D6EBDF548E6879E6914071
 
 dput:
     host: debile-master
