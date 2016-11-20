@@ -2,7 +2,7 @@
 xmlrpc:
     host: debile-master
     port: 22017
-    # ca_certs: /etc/ssl/certs/ca-certificates.crt
+    ca_certs: /etc/ssl/certs/ca-certificates.crt
 
 gpg: 8D23969D7859B1D9ACB461E4269AE5B0859F04C1
 

@@ -69,16 +69,6 @@ Author: Marko Dimjašević <marko@dimjasevic.net>, Léo Cavaillé <leo@cavaille.
  	ChrootSudo.pm		\
  	ChrootSetup.pm		\
  	ChrootInfo.pm		\
---- sbuild-0.69.0.orig/lib/Sbuild/Makefile.in
-+++ sbuild-0.69.0/lib/Sbuild/Makefile.in
-@@ -297,6 +297,7 @@ MODULES = \
- 	ChrootPlain.pm		\
- 	ChrootRoot.pm		\
- 	ChrootSchroot.pm	\
-+	SessionSchroot.pm	\
- 	ChrootSudo.pm		\
- 	ChrootSetup.pm		\
- 	ChrootInfo.pm		\
 --- sbuild-0.69.0.orig/lib/Sbuild/Options.pm
 +++ sbuild-0.69.0/lib/Sbuild/Options.pm
 @@ -90,6 +90,9 @@ sub set_options {

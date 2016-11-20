@@ -7,9 +7,14 @@ affinity_preference: ['amd64']
 xmlrpc:
     addr: 0.0.0.0
     port: 22017
+    keyfile: /srv/debile/.gnupg/pubring.gpg
+    certfile: /etc/ssl/certs/ca-certificates.crt
+    ca_certs: 
 
 keyrings:
     pgp: /srv/debile/.gnupg/pubring.gpg
+    ssl:
+
 
 repo:
     # custom_resolver: devnull.foo.resolver

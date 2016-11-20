@@ -14,10 +14,9 @@ COPY *.deb /tmp/debile/
 
 WORKDIR /tmp/debile
 
-
 RUN apt update && apt install -y python python2.7 python-chardet python-flask
 RUN apt install -y python-jinja2 python-psycopg2 python-six 
-RUN apt install -y python-sqlalchemy python-debian python-requests python-yaml adduser reprepro python-firehose python-chardet
+RUN apt install -y python-sqlalchemy python-debian python-requests python-yaml adduser reprepro python-firehose python-chardet vim sudo
 
 RUN dpkg -i python-firewoes*.deb python-debile*.deb debile-master*.deb
 

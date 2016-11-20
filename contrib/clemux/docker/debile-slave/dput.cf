@@ -1,0 +1,6 @@
+[debile]
+fqdn                    = debile-http
+method                  = http
+incoming                = /UploadQueue
+login                   = *
+allow_dcut              = 1
