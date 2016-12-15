@@ -1,4 +1,5 @@
 from debile import __version__
+import os
 from setuptools import setup
 
 
@@ -52,6 +53,7 @@ flavors = {
     }),  # Master config
 }
 
+__file__ = os.path.relpath(__file__)
 appname, packages, scripts = flavors[__file__]
 
 long_description = ""

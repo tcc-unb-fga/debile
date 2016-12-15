@@ -25,6 +25,30 @@ and documentation need more work, so don't hesitate to ask for help on
 sylvestre@debian.org.
 
 
+Quick setup for development, using Vagrant
+=========================================
+
+The Docker configuration use debile modules as debian packages. This hinders the development of debile, 
+once you have to pack your changes on the code, and reinstall the new package inside
+the docker. To make the development more dinamic you can use vagrant, to run debile inside on virtual
+machine.
+
+
+
+Debile is currently quite difficult to install. If you want to set it
+up quickly and start hacking immediately, you can use
+[docker](https://docs.docker.com/articles/basics/).
+
+Some *Dockerfile*s for *debile-master*, *debile-slave* and the required
+services are provided in contrib/clemux/docker. Both the *Dockerfile*s
+and documentation need more work, so don't hesitate to ask for help on
+[#debile](irc://irc.debian.org/debile) (irc.debian.org), or send an email to clement@mux.me and
+sylvestre@debian.org.
+
+
+Postgresql install
+==================
+
 Postgresql install
 ==================
 
