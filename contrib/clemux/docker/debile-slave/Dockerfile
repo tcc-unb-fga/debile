@@ -40,14 +40,18 @@ RUN chown -R debile:debile /etc/debile/*
 COPY slave.yaml /etc/debile/
 
 COPY debile-rebuild.ini /etc/
+COPY dput.cf ~/.dput.cf
 
 # GPG_TTY $(tty)
 # export $GPG_TTY
-ENV GPG_TTY $(tty)
-
+# RUN GPG_TTY=$(tty)
+# RUN export GPG_TTY
+ENV GPG_TTY /dev/console
 # USER debile
 
 COPY slave-keys.tar.gz /tmp/
+COPY debile-master.json /etc/dput.d/profiles/
+
 
 # RUN sh -c "tar xvf slave-keys.tar.gz -O | gpg --import --status-fd 1 2&> /dev/null"
 

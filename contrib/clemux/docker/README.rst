@@ -156,11 +156,30 @@ Initializing debile-master
 
 Run a temporary container:
 
- $ docker run -ti --rm --volumes-from debile-data --link debile-pg:debile-pg clemux/debile-master bash
+ $ docker run -ti --rm --volumes-from debile-data -v /home/david/MEGA/tcc/debile:/srv/debile/repo --link debile-pg:debile-pg clemux/debile-master bnash
+
+ Dettach the container with Ctrl+p + Ctrl+q, and login as root with
+
+ docker exec -u 0 -it container_id bash
+ 
+ Change the directory /srv/debile/repo permissions to 777, and the owner.group to debile.debile.
+
+ Login again with user debile
+
+ docker exec -u debile -it container_id bash
+
+ Start virtualenv
+`
+        cd /srv/debile/repo/
+        export WORKON_HOME=/srv/debile/repo
+        source /usr/local/bin/virtualenvwrapper.sh
+        mkvirtualenv debile_env
+`
 
 Inside the container's shell:
 
  $ debile-master-init --config /etc/debile/master.yaml /etc/debile/debile.yaml
+
 
 You can test whether it worked, or make manual modifications to the
 database:
