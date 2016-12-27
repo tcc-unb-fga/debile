@@ -156,7 +156,7 @@ Initializing debile-master
 
 Run a temporary container:
 
- $ docker run -ti --rm --volumes-from debile-data -v /home/david/MEGA/tcc/debile:/srv/debile/repo --link debile-pg:debile-pg clemux/debile-master bnash
+ $ docker run -ti --rm --volumes-from debile-data -v /home/david/MEGA/tcc/debile:/srv/debile/repo --link debile-pg:debile-pg clemux/debile-master bash
 
  Dettach the container with Ctrl+p + Ctrl+q, and login as root with
 
@@ -201,8 +201,7 @@ With systemd:
 
 Otherwise:
 
- $ docker run --name debile-master --volumes-from debile-data --link debile-pg:debile-pg clemux/debile-master
-
+ $ docker run -ti --rm --volumes-from debile-data -v /home/david/MEGA/tcc/debile:/srv/debile/repo --link debile-pg:debile-pg clemux/debile-master bash
 
 Running nginx (debile-http)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -226,7 +225,7 @@ will expose the ngix port on the host as 8080.
 Running debile-slave
 --------------------
 
- $ docker run --name debile-slave --link debile-master:debile-master --link debile-http:debile-http clemux/debile-slave
+ $ docker run -ti --name debile-slave -v /home/david/MEGA/tcc/debile:/srv/debile/repo --link debile-master:debile-master --link debile-http:debile-http clemux/debile-slave
 
 Tip: If you get an authentication failure similar to this:
 

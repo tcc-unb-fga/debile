@@ -2,7 +2,6 @@ from debile import __version__
 import os
 from setuptools import setup
 
-
 """
 Dear world:
 
@@ -21,6 +20,10 @@ flavors = {
         'debile.utils',
         'debile.rebuild',
         'debile.rebuild.bin',
+        'debile.slave',
+        'debile.slave.commands',
+        'debile.slave.runners',
+        'debile.slave.wrappers',
     ], {
         'console_scripts': [
             'debile-remote = debile.utils.cli:main',
@@ -30,6 +33,10 @@ flavors = {
             'debile-query = debile.rebuild.bin.query',
             'debile-rebuild-set = debile.rebuild.bin.rebuild_set',
             'debile-update = debile.rebuild.bin.update',
+            'debile-master = debile.master.cli:server',
+            'debile-master-init = debile.master.cli:init',
+            'debile-incoming = debile.master.cli:process_incoming',
+            'debile-slave = debile.slave.cli:daemon',
         ],
     }),  # Default config
     "setup.slave.py": ("debile.slave", [

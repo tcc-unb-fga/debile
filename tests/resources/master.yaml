@@ -11,7 +11,7 @@ xmlrpc:
     certfile: /srv/debile/master.crt
 
 keyrings:
-    pgp: /srv/debile/keyring.pgp
+    pgp: /root/.gnupg/pubring.gpg
     ssl: /srv/debile/keyring.pem
 
 repo:

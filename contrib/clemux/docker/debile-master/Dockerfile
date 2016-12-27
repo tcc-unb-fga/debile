@@ -19,6 +19,7 @@ libyaml-dev libpq-dev python-jinja2 python-psycopg2 python-six \
 python-sqlalchemy python-debian python-requests python-yaml \ 
 adduser reprepro python-firehose python-chardet vim sudo python-pip
 
+RUN dpkg -i python-firewoes*.deb
 RUN pip install pymongo virtualenvwrapper
 
 COPY master.yaml /etc/debile/
