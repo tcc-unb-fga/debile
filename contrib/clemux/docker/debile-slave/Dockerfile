@@ -46,9 +46,13 @@ COPY debile-rebuild.ini /etc/
 
 # USER debile
 
+ENV TERM xterm
+
+RUN cp /etc/dput.cf /etc/dput_bkp.cf
+COPY dput.cf /etc/
+
 COPY slave-keys.tar.gz /tmp/
 RUN tar xvf slave-keys.tar.gz
-ENV TERM xterm
 RUN gpg --import key.pub
 RUN gpg --import --batch --status-fd 1 key.priv
 
