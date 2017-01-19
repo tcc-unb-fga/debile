@@ -15,7 +15,7 @@ COPY *.deb /tmp/
 
 WORKDIR /tmp
 
-RUN apt-get update && apt-get install -y python python-dput dput-ng python-firehose adduser python-debian python-requests python-yaml python-schroot vim python-pip sudo
+RUN apt-get update && apt-get install -y python python-dput dput-ng python-firehose adduser python-debian python-requests python-yaml python-schroot vim python-pip sudo xterm
 
 RUN apt install -y apt-utils dctrl-tools devscripts python-clint
 
@@ -43,13 +43,14 @@ COPY debile-rebuild.ini /etc/
 
 # GPG_TTY $(tty)
 # export $GPG_TTY
-ENV GPG_TTY $(tty)
 
 # USER debile
 
 COPY slave-keys.tar.gz /tmp/
-
-# RUN sh -c "tar xvf slave-keys.tar.gz -O | gpg --import --status-fd 1 2&> /dev/null"
+RUN tar xvf slave-keys.tar.gz
+ENV TERM xterm
+RUN gpg --import key.pub
+RUN gpg --import --batch --status-fd 1 key.priv
 
 # CMD debile-slave --debug --auth simple
 
