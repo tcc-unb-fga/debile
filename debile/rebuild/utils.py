@@ -118,7 +118,7 @@ def fetch_and_upload(dist, source, version, **kwargs):
                 dsc = os.path.basename(DSC_URL)
                 try:
                     changes = write_changes(dsc, dist, **kwargs)
-                    out, err = run(['debsign', '-k%s' % gpg, dsc])
+                    out, err = run(['debsign', '-k%s' % gpg, changes])
                     out, err = run(['dput', target, changes])
                 except MissingChangesFieldException as e:
                     print('Could not issue rebuild. Missing Changes')
@@ -148,7 +148,7 @@ def write_changes(fname, dist, **kwargs):
     if ":" in eversion:
         _, eversion = version.rsplit(":", 1)
 
-    path = '/tmp/{source}_{version}_source.changes'.format(
+    path = '{source}_{version}_source.changes'.format(
         source=changes['Source'],
         version=eversion,
     )
