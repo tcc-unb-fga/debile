@@ -8,7 +8,7 @@ Users:  # Users of Debile
 Builders:  # Machines that can build
     - name: debile-slave
       maintainer: clement@mux.me
-      pgp: 7C367D02AF6D20DCF2BFB686E8D62122F818733D
+      pgp: F2DF1F1D6D152D01A1A50B4610E19CC86DB537FF
       ssl: 00000000000000000EADBEE00000000000000000
 
 Suites:

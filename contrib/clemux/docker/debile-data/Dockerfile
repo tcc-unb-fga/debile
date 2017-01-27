@@ -13,15 +13,7 @@ RUN chown -R debile:debile /srv/debile
 RUN chmod a+rwx /srv/debile/incoming/UploadQueue
 
 USER debile
-
-COPY master-keys.tar.gz /tmp/
-
-WORKDIR /tmp
-
-RUN sh -c "tar xvf master-keys.tar.gz -O | gpg --import --status-fd 1"
-
 WORKDIR /srv/debile
-
 VOLUME /srv/debile
 
 CMD echo Data-only container for debile-master

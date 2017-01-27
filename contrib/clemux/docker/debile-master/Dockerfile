@@ -23,8 +23,7 @@ RUN dpkg -i python-firewoes*.deb python-debile*.deb debile-master*.deb
 COPY master.yaml /etc/debile/
 COPY debile.yaml /etc/debile/
 
-USER debile
-
+COPY master-keys.tar.gz /tmp/debile
+RUN tar xvf master-keys.tar.gz
+RUN gpg --batch --import key.priv
 EXPOSE 22017
-
-CMD debile-master --auth simple --debug

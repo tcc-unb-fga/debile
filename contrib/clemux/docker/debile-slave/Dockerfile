@@ -17,7 +17,7 @@ WORKDIR /tmp
 
 RUN apt-get update && apt-get install -y python python-dput dput-ng python-firehose adduser python-debian python-requests python-yaml python-schroot vim python-pip sudo xterm
 
-RUN apt install -y apt-utils dctrl-tools devscripts python-clint
+RUN apt install -y apt-utils dctrl-tools devscripts python-clint dupload
 
 # Use a custom version of sbuild written by Léo Cavaillé that adds an
 # option --use-schroot-session, which enables starting sbuild with an
@@ -41,22 +41,10 @@ COPY slave.yaml /etc/debile/
 
 COPY debile-rebuild.ini /etc/
 
-# GPG_TTY $(tty)
-# export $GPG_TTY
-
-# USER debile
-
 ENV TERM xterm
-
-RUN cp /etc/dput.cf /etc/dput_bkp.cf
 COPY dput.cf /etc/
 
 COPY slave-keys.tar.gz /tmp/
 RUN tar xvf slave-keys.tar.gz
 RUN gpg --import key.pub
 RUN gpg --import --batch --status-fd 1 key.priv
-
-# CMD debile-slave --debug --auth simple
-
-#       vim_7.3.547-7.dsc
-# debile-upload --dist=unstable --source=vim --version=7.3.547-7 --group=test
