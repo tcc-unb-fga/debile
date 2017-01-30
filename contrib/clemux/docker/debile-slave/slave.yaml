@@ -4,7 +4,7 @@ xmlrpc:
     port: 22017
     ca_certs: /etc/ssl/certs/ca-certificates.crt
 
-gpg: F2DF1F1D6D152D01A1A50B4610E19CC86DB537FF
+gpg: ABFFB743FAC03779FC3E4C2FFFB355162ACA0558
 
 dput:
     host: debile

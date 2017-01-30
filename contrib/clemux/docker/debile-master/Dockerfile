@@ -15,7 +15,7 @@ COPY *.deb /tmp/debile/
 WORKDIR /tmp/debile
 
 RUN apt update && apt install -y python python2.7 python-chardet python-flask
-RUN apt install -y python-jinja2 python-psycopg2 python-six 
+RUN apt install -y python-jinja2 python-psycopg2 python-six
 RUN apt install -y python-sqlalchemy python-debian python-requests python-yaml adduser reprepro python-firehose python-chardet vim sudo
 
 RUN dpkg -i python-firewoes*.deb python-debile*.deb debile-master*.deb
@@ -23,7 +23,7 @@ RUN dpkg -i python-firewoes*.deb python-debile*.deb debile-master*.deb
 COPY master.yaml /etc/debile/
 COPY debile.yaml /etc/debile/
 
-COPY master-keys.tar.gz /tmp/debile
-RUN tar xvf master-keys.tar.gz
+COPY slave-keys.tar.gz /tmp/debile
+RUN tar xvf slave-keys.tar.gz
 RUN gpg --batch --import key.priv
 EXPOSE 22017

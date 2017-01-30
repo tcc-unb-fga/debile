@@ -1,14 +1,14 @@
 ---
 Users:  # Users of Debile
-    - name: Clement Schreiner
-      email: clement@mux.me
-      pgp: E58AFF0ACA7A7E7B410DB8EDF279F1D6C2C66F72
+    - name: Kiskadee Tool
+      email: kiskadee@mail.com
+      pgp: ABFFB743FAC03779FC3E4C2FFFB355162ACA0558
       ssl: 00000000000000000EADBEEF0000000000000000
 
 Builders:  # Machines that can build
     - name: debile-slave
-      maintainer: clement@mux.me
-      pgp: F2DF1F1D6D152D01A1A50B4610E19CC86DB537FF
+      maintainer: kiskadee@mail.com
+      pgp: ABFFB743FAC03779FC3E4C2FFFB355162ACA0558
       ssl: 00000000000000000EADBEE00000000000000000
 
 Suites:
