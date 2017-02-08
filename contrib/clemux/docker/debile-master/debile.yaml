@@ -28,8 +28,7 @@ Checks:
 
 Groups:
     - name: default
-      maintainer: clement@mux.me
-
+      maintainer: kiskadee@mail.com
       suites:
           - suite: unstable
             components:
