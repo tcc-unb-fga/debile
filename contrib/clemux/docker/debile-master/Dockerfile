@@ -26,4 +26,5 @@ COPY debile.yaml /etc/debile/
 COPY slave-keys.tar.gz /tmp/debile
 RUN tar xvf slave-keys.tar.gz
 RUN gpg --batch --import key.priv
+RUN touch debile_master_log
 EXPOSE 22017
