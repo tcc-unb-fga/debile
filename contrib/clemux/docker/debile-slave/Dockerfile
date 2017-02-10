@@ -18,6 +18,8 @@ WORKDIR /tmp
 RUN apt-get update && apt-get install -y python python-dput dput-ng python-firehose adduser python-debian python-requests python-yaml python-schroot vim python-pip sudo xterm
 
 RUN apt install -y apt-utils dctrl-tools devscripts python-clint dupload
+RUN pip install lxml
+RUN apt install cppcheck
 
 # Use a custom version of sbuild written by Léo Cavaillé that adds an
 # option --use-schroot-session, which enables starting sbuild with an

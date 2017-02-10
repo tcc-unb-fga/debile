@@ -19,5 +19,4 @@ arches:
     - amd64
 
 checks:
-    - lintian
-
+    - cppcheck

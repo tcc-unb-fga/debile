@@ -25,6 +25,10 @@ Checks:
       source: true
       binary: true
       build: false
+    - name: cppcheck
+      source: true
+      binary: true
+      build: false
 
 Groups:
     - name: default
@@ -36,4 +40,4 @@ Groups:
             arches:
                 - amd64
             checks:
-                - lintian
+                - cppcheck
