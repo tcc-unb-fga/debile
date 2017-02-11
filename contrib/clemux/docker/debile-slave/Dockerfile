@@ -33,7 +33,7 @@ RUN cd sbuild-* && cp ../support-for-schroot-sessions.patch . && \
 RUN (dpkg --install *sbuild*.deb || true)
 RUN apt-get --assume-yes --fix-broken install
 
-RUN dpkg -i python-debile*.deb debile-slave*.deb
+RUN dpkg -i python-debile*.deb
 
 RUN sbuild-adduser debile
 
