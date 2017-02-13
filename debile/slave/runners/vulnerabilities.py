@@ -19,7 +19,7 @@
 # DEALINGS IN THE SOFTWARE.
 
 from debile.utils.commands import run_command
-from firehose.model import Issue, Message, File, Location, Point, Info
+from firehose.model import Message, Info
 from debile.slave.utils import cd
 import tempfile
 import subprocess
@@ -32,24 +32,21 @@ def vulnerabilities(dsc, analysis):
     sloc_data_dir = tempfile.mkdtemp()
     source_dir = tempfile.mkdtemp()
     dsc_full_path = '/srv/debile/repo/default/pool/main/i/i3-wm/' + dsc
-    print('source dir')
-    print(source_dir)
     with cd(source_dir):
         run_command(["dpkg-source", "-x", dsc_full_path, 'source-vulnerabilities'])
     run_command(['sloccount', '--datadir', sloc_data_dir, '--filecount', source_dir + '/source-vulnerabilities'])
     count_modules(sloc_data_dir)
 
-
     failed = False
-    info = Info(infoid=None, location=None, message=Message(text=str(total_modules)), customfields=None)
-    analysis.results.append(info)
+    cwe457_info = Info(infoid='cwe457', location=None, message=Message(text=str(cwe457_model())), customfields=None)
+    cwe476_info = Info(infoid='cwe476', location=None, message=Message(text=str(cwe476_model())), customfields=None)
+    analysis.results.append(cwe476_info)
+    analysis.results.append(cwe457_info)
 
     return (analysis, '', failed, None, None)
 
 
 def count_modules(path):
-    print('sloc data')
-    print(path)
     for root, dirs, files in os.walk(path):
         for _file in files:
             is_ansic(_file, root)
@@ -63,6 +60,12 @@ def is_ansic(file_name, root):
         global total_modules
         total_modules += modules
 
+
+def cwe457_model():
+    return (-6.466983*10**(-16))*total_modules**3 + (5.603787*10**(-11))*total_modules**2 - (1.639652*10**(-6))*total_modules + (0.02287291)
+
+def cwe476_model():
+    return (1.911224*10**(-15))*total_modules**3 - (1.72028*10**(-10))*total_modules**2 + (4.85747*10**(-6))*total_modules - (0.03460173)
 
 def version():
     return ('vulnerabilities', '0.1')
