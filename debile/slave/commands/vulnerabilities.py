@@ -18,7 +18,10 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-from debile.slave.runners.vulnerabilities import vulnerabilities
+from debile.slave.runners.vulnerabilities import vulnerabilities, version
 
 def run(dsc, package, job, firehose):
     return vulnerabilities(dsc, firehose)
+
+def get_version():
+    return version()

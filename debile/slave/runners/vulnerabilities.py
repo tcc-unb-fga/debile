@@ -19,6 +19,7 @@
 # DEALINGS IN THE SOFTWARE.
 
 from debile.utils.commands import run_command
+from firehose.model import Issue, Message, File, Location, Point, Info
 from debile.slave.utils import cd
 import tempfile
 import subprocess
@@ -30,16 +31,29 @@ total_modules = 0
 def vulnerabilities(dsc, analysis):
     sloc_data_dir = tempfile.mkdtemp()
     source_dir = tempfile.mkdtemp()
-    run_command(["dpkg-source", "-x", dsc, source_dir])
-    run_command(['sloccount', '--datadir', sloc_data_dir, '--filecount', source_dir])
-    print count_modules(sloc_data_dir)
-    print(total_modules)
+    dsc_full_path = '/srv/debile/repo/default/pool/main/i/i3-wm/' + dsc
+    print('source dir')
+    print(source_dir)
+    with cd(source_dir):
+        run_command(["dpkg-source", "-x", dsc_full_path, 'source-vulnerabilities'])
+    run_command(['sloccount', '--datadir', sloc_data_dir, '--filecount', source_dir + '/source-vulnerabilities'])
+    count_modules(sloc_data_dir)
+
+
+    failed = False
+    info = Info(infoid=None, location=None, message=Message(text=str(total_modules)), customfields=None)
+    analysis.results.append(info)
+
+    return (analysis, '', failed, None, None)
+
 
 def count_modules(path):
+    print('sloc data')
+    print(path)
     for root, dirs, files in os.walk(path):
         for _file in files:
             is_ansic(_file, root)
-        
+
 
 def is_ansic(file_name, root):
     if file_name == 'ansic_list.dat':
@@ -50,6 +64,5 @@ def is_ansic(file_name, root):
         total_modules += modules
 
 
-if __name__ == '__main__':
-    vulnerabilities()
-
+def version():
+    return ('vulnerabilities', '0.1')

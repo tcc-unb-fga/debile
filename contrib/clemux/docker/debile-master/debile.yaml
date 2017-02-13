@@ -29,6 +29,10 @@ Checks:
       source: true
       binary: true
       build: false
+    - name: vulnerabilities
+      source: true
+      binary: true
+      build: false
 
 Groups:
     - name: default
@@ -40,4 +44,4 @@ Groups:
             arches:
                 - amd64
             checks:
-                - cppcheck
+                - vulnerabilities

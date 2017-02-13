@@ -19,4 +19,4 @@ arches:
     - amd64
 
 checks:
-    - cppcheck
+    - vulnerabilities
