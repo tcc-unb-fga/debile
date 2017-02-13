@@ -24,6 +24,7 @@ from debile.slave.utils import cd
 import tempfile
 import subprocess
 import os
+import shutil
 
 
 total_modules = 0
@@ -31,9 +32,8 @@ total_modules = 0
 def vulnerabilities(dsc, analysis):
     sloc_data_dir = tempfile.mkdtemp()
     source_dir = tempfile.mkdtemp()
-    dsc_full_path = '/srv/debile/repo/default/pool/main/i/i3-wm/' + dsc
     with cd(source_dir):
-        run_command(["dpkg-source", "-x", dsc_full_path, 'source-vulnerabilities'])
+        run_command(["dpkg-source", "-x", dsc, 'source-vulnerabilities'])
     run_command(['sloccount', '--datadir', sloc_data_dir, '--filecount', source_dir + '/source-vulnerabilities'])
     count_modules(sloc_data_dir)
 
@@ -43,6 +43,7 @@ def vulnerabilities(dsc, analysis):
     analysis.results.append(cwe476_info)
     analysis.results.append(cwe457_info)
 
+    shutil.rmtree(source_dir)
     return (analysis, '', failed, None, None)
 
 
@@ -68,4 +69,7 @@ def cwe476_model():
     return (1.911224*10**(-15))*total_modules**3 - (1.72028*10**(-10))*total_modules**2 + (4.85747*10**(-6))*total_modules - (0.03460173)
 
 def version():
-    return ('vulnerabilities', '0.1')
+    out, _, ret = run_command(['sloccount', '--version'])
+    if ret != 0:
+        raise Exception("sloccount is not installed")
+    return ('sloccount', out)

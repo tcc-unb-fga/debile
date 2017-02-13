@@ -91,7 +91,7 @@ def checkout(package):
         with cd(path):
             if package['type'] == "source":
                 safe_run(["dget", "-u", "-d", package['source']['dsc_url']])
-                yield package['source']['dsc_filename']
+                yield package['source']['dsc_path']
             elif package['type'] == "binary":
                 files = []
                 for deb in package['binary']['debs']:
