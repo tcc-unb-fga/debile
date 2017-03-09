@@ -45,3 +45,16 @@ Groups:
                 - amd64
             checks:
                 - vulnerabilities
+                - cppcheck
+                - lintian
+    - name: flaws
+      maintainer: kiskadee@mail.com
+      suites:
+          - suite: unstable
+            components:
+                - main
+            arches:
+                - amd64
+            checks:
+                - vulnerabilities
+                - cppcheck

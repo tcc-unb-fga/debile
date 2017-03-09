@@ -20,3 +20,5 @@ arches:
 
 checks:
     - vulnerabilities
+    - cppcheck
+    - lintian
