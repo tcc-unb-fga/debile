@@ -28,18 +28,26 @@ import lxml.etree
 
 def parse_cppcheck(payload):
     tree = lxml.etree.fromstring(payload.encode('utf-16'))
-    for result in tree.xpath("//results/error"):
 
-        if 'file' not in result.attrib:
+    locations = tree.xpath("//results/errors/error/location")
+    locations_index = 0
+    for result in tree.xpath("//results/errors/error"):
+        if 'file' not in locations[locations_index].attrib:
             continue
 
-        path = result.attrib['file']
-        line = result.attrib['line']
+        path = locations[locations_index].attrib['file']
+        line = locations[locations_index].attrib['line']
         severity = result.attrib['severity']
         message = result.attrib['msg']
         testid = result.attrib['id']
+        if 'cwe' in result.attrib:
+            cwe = int(result.attrib['cwe'])
+        else:
+            cwe = None
 
-        yield Issue(cwe=None,
+        locations_index += 1
+
+        yield Issue(cwe=cwe,
                     testid=testid,
                     location=Location(
                         file=File(path, None),

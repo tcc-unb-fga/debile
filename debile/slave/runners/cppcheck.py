@@ -22,13 +22,16 @@
 from debile.slave.wrappers.cppcheck import parse_cppcheck
 from debile.slave.utils import cd
 from debile.utils.commands import run_command
+import tempfile
 
 
 def cppcheck(dsc, analysis):
-    run_command(["dpkg-source", "-x", dsc, "source-cppcheck"])
-    with cd('source-cppcheck'):
+    source_dir = tempfile.mkdtemp()
+    with cd(source_dir):
+        run_command(["dpkg-source", "-x", dsc, 'source-cppcheck'])
+    with cd(source_dir + '/source-cppcheck'):
         _, err, _ = run_command([
-            'cppcheck', '-j8', '--enable=all', '.', '--xml'
+            'cppcheck', '-j8', '--enable=all', '--xml-version=2', '.'
         ])
 
         xmlbytes = err.encode()
@@ -40,7 +43,7 @@ def cppcheck(dsc, analysis):
         for issue in parse_cppcheck(xmlbytes):
             analysis.results.append(issue)
             if not failed and issue.severity in [
-                'performance', 'portability', 'error', 'warning'
+                'performance', 'portability', 'error', 'warning', 'style', 'information'
             ]:
                 failed = True
 

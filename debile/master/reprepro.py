@@ -21,7 +21,9 @@
 from debile.utils.commands import run_command
 from debian.deb822 import Sources
 from gzip import GzipFile
-
+import os.path
+import urllib2
+from debile.rebuild.core import get_sources_uri
 
 class RepoException(Exception):
     pass
@@ -85,6 +87,11 @@ class Repo(object):
             suite=source.suite.name,
             component=source.component.name
         )
+
+        if not (os.path.exists(sources)):
+            source_file = urllib2.urlopen(get_sources_uri())
+            open(sources, 'w').write(source_file.read())
+
 
         for entry in Sources.iter_paragraphs(GzipFile(filename=sources)):
             if entry['Package'] == source.name and entry['Version'] == source.version:

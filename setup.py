@@ -72,6 +72,8 @@ setup(
     version=__version__,
     scripts=[],
     packages=packages,
+    package_data={'debile.rebuild.bin': ['update']},
+    include_package_data=True,
     author="Paul Tagliamonte",
     author_email="tag@pault.ag",
     long_description=long_description,

@@ -18,11 +18,10 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-from pymongo import Connection
+import pymongo
 
-
-connection = Connection('localhost', 27017)
-db = connection.loofah
+client = pymongo.MongoClient("localhost", 27017)
+db = client.loofah
 
 
 PROTOCOL = "http://"

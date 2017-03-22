@@ -104,13 +104,13 @@ class PackageEntry(dict):
                     x.split() for x in entry['Package-List'].split("\n")
                 ]
             ]
-        for key in ["Files", "Checksums-Sha256", "Checksums-Sha1"]:
+        for key in ["Files", "Checksums-Sha256"]:
             entry[key] = [
                 {
                     "hash": y[0],
                     "size": y[1],
                     "file": y[2]
-                } for y in [x.split() for x in entry[key].split("\n")]
+                } for y in [x for x in entry[key].split("\n")]
             ]
 
         return entry
@@ -154,7 +154,7 @@ class Sources(dict):
         table = self.get_table()
         obj = self.info
         obj['_id'] = foo
-        db.meta.update({"_id": foo}, obj, True, safe=True)
+        db.collection.update({"_id": foo}, obj)
 
         print("Dropping old data")
         table.drop()
@@ -163,7 +163,7 @@ class Sources(dict):
         for package in self:
             obj = self[package]
             obj['_id'] = obj['Package']
-            table.update({"_id": obj['_id']}, obj, True, safe=True)
+            table.update({"_id": obj['_id']}, obj, True)
 
         print("Updated.")
 
